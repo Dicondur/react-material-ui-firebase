@@ -21,6 +21,9 @@ import theming from '../../theming';
 
 class AppearanceTab extends Component {
   render() {
+    // Events
+    const { onPaletteClick } = this.props;
+
     return (
       <DialogContent>
         <List disablePadding>
@@ -38,7 +41,7 @@ class AppearanceTab extends Component {
 
             <ListItemSecondaryAction>
               <Tooltip title="Palette">
-                <IconButton>
+                <IconButton onClick={onPaletteClick}>
                   <PaletteIcon />
                 </IconButton>
               </Tooltip>
@@ -59,7 +62,7 @@ class AppearanceTab extends Component {
 
             <ListItemSecondaryAction>
               <Tooltip title="Palette">
-                <IconButton>
+                <IconButton onClick={onPaletteClick}>
                   <PaletteIcon />
                 </IconButton>
               </Tooltip>
@@ -72,7 +75,8 @@ class AppearanceTab extends Component {
 }
 
 AppearanceTab.propTypes = {
-
+  // Events
+  onPaletteClick: PropTypes.func.isRequired
 };
 
 export default AppearanceTab;

@@ -68,7 +68,7 @@ class SettingsDialog extends Component {
     super(props);
 
     this.state = {
-      selectedTab: 0
+      selectedTab: 1
     };
   }
 
@@ -101,6 +101,9 @@ class SettingsDialog extends Component {
     const {
       openSnackbar
     } = this.props;
+
+    // Custom Events
+    const { onPaletteClick } = this.props;
 
     const { selectedTab } = this.state;
 
@@ -164,7 +167,9 @@ class SettingsDialog extends Component {
           }
 
           {selectedTab === 1 &&
-            <AppearanceTab />
+            <AppearanceTab
+              onPaletteClick={onPaletteClick}
+            />
           }
 
           {selectedTab === 2 &&
@@ -191,7 +196,9 @@ class SettingsDialog extends Component {
               openSnackbar={openSnackbar}
             />
 
-            <AppearanceTab />
+            <AppearanceTab
+              onPaletteClick={onPaletteClick}
+            />
 
             <ConnectionsTab
               openSnackbar={openSnackbar}
@@ -221,7 +228,10 @@ SettingsDialog.propTypes = {
   userData: PropTypes.object.isRequired,
 
   // Custom Functions
-  openSnackbar: PropTypes.func.isRequired
+  openSnackbar: PropTypes.func.isRequired,
+
+  // Custom Events
+  onPaletteClick: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(SettingsDialog);

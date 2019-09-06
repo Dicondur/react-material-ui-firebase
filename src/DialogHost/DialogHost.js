@@ -7,6 +7,7 @@ import Hidden from '@material-ui/core/Hidden';
 import SignUpDialog from '../dialogs/SignUpDialog';
 import SignInDialog from '../dialogs/SignInDialog';
 import SettingsDialog from '../dialogs/SettingsDialog';
+import SimpleDialog from '../dialogs/SimpleDialog';
 import AlertDialog from '../dialogs/AlertDialog';
 
 class DialogHost extends Component {
@@ -20,6 +21,7 @@ class DialogHost extends Component {
     const signUpDialog = dialogs.signUpDialog;
     const signInDialog = dialogs.signInDialog;
     const settingsDialog = dialogs.settingsDialog;
+    const paletteDialog = dialogs.paletteDialog;
     const signOutDialog = dialogs.signOutDialog;
 
     return (
@@ -94,6 +96,12 @@ class DialogHost extends Component {
 
         {signedIn &&
           <React.Fragment>
+            <SimpleDialog
+              dialogProps={paletteDialog.dialogProps}
+
+              {...paletteDialog.props}
+            />
+
             <AlertDialog
               dialogProps={signOutDialog.dialogProps}
 

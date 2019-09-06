@@ -4,6 +4,13 @@ import readingTime from 'reading-time';
 
 import { MuiThemeProvider } from '@material-ui/core/styles';
 
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import ListItemText from '@material-ui/core/ListItemText';
+
+import Box from '@material-ui/core/Box';
+import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 
@@ -41,6 +48,10 @@ class App extends Component {
 
       settingsDialog: {
         open: true
+      },
+
+      paletteDialog: {
+        open: false
       },
 
       signOutDialog: {
@@ -142,6 +153,7 @@ class App extends Component {
       signUpDialog,
       signInDialog,
       settingsDialog,
+      paletteDialog,
       signOutDialog
     } = this.state;
 
@@ -229,7 +241,38 @@ class App extends Component {
                         user: user,
                         userData: userData,
 
-                        openSnackbar: this.openSnackbar
+                        openSnackbar: this.openSnackbar,
+
+                        onPaletteClick: () => this.openDialog('paletteDialog')
+                      }
+                    },
+
+                    paletteDialog: {
+                      dialogProps: {
+                        open: paletteDialog.open,
+
+                        onClose: () => this.closeDialog('paletteDialog')
+                      },
+
+                      props: {
+                        title: 'Palette',
+                        content: (
+                          <List disablePadding>
+                            {theming.colors.map((color) => {
+                              return (
+                                <ListItem key={color.id} button>
+                                  <ListItemAvatar>
+                                    <Avatar />
+                                  </ListItemAvatar>
+
+                                  <ListItemText
+                                    primary={color.name}
+                                  />
+                                </ListItem>
+                              );
+                            })}
+                          </List>
+                        )
                       }
                     },
 
